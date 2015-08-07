@@ -42,7 +42,8 @@ if (MSVC)
 else()
     set(GL3W_LIB_FILE "libgl3w.a")
     set(GLFW_LIB_FILE "libglfw3.a")
-    add_definitions("-std=c++14 -Wall")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s")
 endif()
 
 # gl3w ------------------------------------------------------------------------
