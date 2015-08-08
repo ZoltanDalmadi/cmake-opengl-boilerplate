@@ -5,6 +5,7 @@ add_executable(example example.cpp)
 target_link_libraries(example
     libgl3w
     libglfw
+    SOIL2
     ${OPENGL_LIBRARIES}
 )
 

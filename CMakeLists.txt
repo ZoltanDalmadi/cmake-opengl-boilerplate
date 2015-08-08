@@ -50,6 +50,7 @@ endif()
 ExternalProject_Add(
     gl3w
     URL "https://github.com/skaslev/gl3w/archive/master.zip"
+	DOWNLOAD_NO_PROGRESS 1
     PREFIX ${CMAKE_BINARY_DIR}/gl3w
     CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
     # disable install
@@ -89,6 +90,7 @@ include_directories(${SOURCE_DIR}/include)
 ExternalProject_Add(
     glfw
     URL "https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip"
+	DOWNLOAD_NO_PROGRESS 1
     PREFIX ${CMAKE_BINARY_DIR}/glfw
     # we just need the library file, no tests and examples please
     CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" "-DGLFW_BUILD_DOCS=OFF"
@@ -117,6 +119,10 @@ set_target_properties(libglfw PROPERTIES
 endif()
 
 include_directories(${SOURCE_DIR}/include)
+
+# SOIL2 -----------------------------------------------------------------------
+add_subdirectory(SOIL2)
+include_directories(SOIL2)
 
 # add src subdirectory
 add_subdirectory(src)
