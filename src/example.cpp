@@ -2,6 +2,7 @@
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 #include <SOIL2.h>
+#include <glm/glm.hpp>
 
 #define WIDTH  800
 #define HEIGHT 600
@@ -36,6 +37,7 @@ int main()
 
   // Make the window's context current
   glfwMakeContextCurrent(window);
+  glfwSwapInterval(1);
 
   // Initialize gl3w
   if (gl3wInit()) {
@@ -53,17 +55,21 @@ int main()
 
   glfwSetKeyCallback(window, key_callback);
 
+  glm::vec3 v(1.0f, 2.0f, 3.0f);
+
+  std::cout << v.x << ", " << v.y << ", " << v.z << std::endl;
+
   // Loop until the user closes the window
   while (!glfwWindowShouldClose(window)) {
-    // Poll for and process events
-    glfwPollEvents();
-
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Render here
 
     // Swap front and back buffers
     glfwSwapBuffers(window);
+
+    // Poll for and process events
+    glfwPollEvents();
   }
 
   glfwTerminate();
