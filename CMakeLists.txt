@@ -50,7 +50,7 @@ endif()
 ExternalProject_Add(
     gl3w
     URL "https://github.com/skaslev/gl3w/archive/master.zip"
-	DOWNLOAD_NO_PROGRESS 1
+    DOWNLOAD_NO_PROGRESS 1
     PREFIX ${CMAKE_BINARY_DIR}/gl3w
     CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
     # disable install
@@ -90,7 +90,7 @@ include_directories(${SOURCE_DIR}/include)
 ExternalProject_Add(
     glfw
     URL "https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip"
-	DOWNLOAD_NO_PROGRESS 1
+    DOWNLOAD_NO_PROGRESS 1
     PREFIX ${CMAKE_BINARY_DIR}/glfw
     # we just need the library file, no tests and examples please
     CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" "-DGLFW_BUILD_DOCS=OFF"
@@ -110,7 +110,7 @@ set_target_properties(libglfw PROPERTIES
     IMPORTED_LOCATION "${BINARY_DIR}/src/${GLFW_LIB_FILE}"
 )
 
-# Tell configuration specific library file locations for MSVC
+# tell configuration specific library file locations for MSVC
 if(MSVC)
 set_target_properties(libglfw PROPERTIES
     IMPORTED_LOCATION_DEBUG "${BINARY_DIR}/src/Debug/${GLFW_LIB_FILE}"
@@ -123,6 +123,22 @@ include_directories(${SOURCE_DIR}/include)
 # SOIL2 -----------------------------------------------------------------------
 add_subdirectory(SOIL2)
 include_directories(SOIL2)
+
+# glm -------------------------------------------------------------------------
+ExternalProject_Add(
+    glm
+    URL "https://github.com/g-truc/glm/releases/download/0.9.7.0/glm-0.9.7.0.7z"
+    DOWNLOAD_NO_PROGRESS 1
+    PREFIX ${CMAKE_BINARY_DIR}/glm
+    # we just need the library file, no tests and examples please
+    BUILD_COMMAND ""
+    CONFIGURE_COMMAND ""
+    INSTALL_COMMAND ""
+)
+
+ExternalProject_Get_Property(glm SOURCE_DIR BINARY_DIR)
+
+include_directories(${SOURCE_DIR})
 
 # add src subdirectory
 add_subdirectory(src)
