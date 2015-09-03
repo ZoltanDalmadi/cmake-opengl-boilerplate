@@ -29,6 +29,9 @@ project(testProj)
 # Needed for downloading and building external libraries
 include(ExternalProject)
 
+# Enable folders in Visual Studio
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 # Obviously we need OpenGL
 find_package(OpenGL REQUIRED)
 
