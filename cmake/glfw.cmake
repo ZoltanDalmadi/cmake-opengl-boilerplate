@@ -30,7 +30,7 @@ else()
 endif()
 
 ExternalProject_Add(
-  glfw_download
+  glfw_dl
   URL "https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip"
   URL_HASH SHA1=7faa2399a5c4744f096bfc0904676ae61f965281
   DOWNLOAD_NO_PROGRESS 1
@@ -45,9 +45,9 @@ ExternalProject_Add(
 
 # set up a library target for glfw
 add_library(glfw IMPORTED STATIC GLOBAL)
-add_dependencies(glfw glfw_download)
+add_dependencies(glfw glfw_dl)
 
-ExternalProject_Get_Property(glfw_download SOURCE_DIR BINARY_DIR)
+ExternalProject_Get_Property(glfw_dl SOURCE_DIR BINARY_DIR)
 
 # setup library file locations
 if(MSVC)

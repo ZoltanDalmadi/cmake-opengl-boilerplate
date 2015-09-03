@@ -33,7 +33,7 @@ else()
 endif()
 
 ExternalProject_Add(
-  gl3w_download
+  gl3w_dl
   URL "https://github.com/skaslev/gl3w/archive/master.zip"
   URL_HASH SHA1=28078d8f6a9e3575aaa1efe40c278ea6d6977538
   DOWNLOAD_NO_PROGRESS 1
@@ -46,9 +46,9 @@ ExternalProject_Add(
 
 # set up a library target for gl3w
 add_library(gl3w IMPORTED STATIC GLOBAL)
-add_dependencies(gl3w gl3w_download)
+add_dependencies(gl3w gl3w_dl)
 
-ExternalProject_Get_Property(gl3w_download SOURCE_DIR BINARY_DIR)
+ExternalProject_Get_Property(gl3w_dl SOURCE_DIR BINARY_DIR)
 
 # set up library file locations
 if(MSVC)

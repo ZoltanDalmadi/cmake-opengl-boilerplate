@@ -50,7 +50,7 @@ endif()
 ")
 
 ExternalProject_Add(
-  SOIL2_download
+  SOIL2_dl
   URL "https://bitbucket.org/SpartanJ/soil2/get/default.zip"
   URL_HASH SHA1=6be2b8d2995c6b95cd43cf4cd0ddd52a150d1eca
   DOWNLOAD_NO_PROGRESS 1
@@ -63,9 +63,9 @@ ExternalProject_Add(
 
 # set up a library target for SOIL2
 add_library(SOIL2 IMPORTED STATIC GLOBAL)
-add_dependencies(SOIL2 SOIL2_download)
+add_dependencies(SOIL2 SOIL2_dl)
 
-ExternalProject_Get_Property(SOIL2_download SOURCE_DIR BINARY_DIR)
+ExternalProject_Get_Property(SOIL2_dl SOURCE_DIR BINARY_DIR)
 
 # setup library file locations
 if(MSVC)

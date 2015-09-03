@@ -24,7 +24,7 @@
 # =============================================================================
 
 ExternalProject_Add(
-  glm_download
+  glm_dl
   URL "https://github.com/g-truc/glm/releases/download/0.9.7.0/glm-0.9.7.0.7z"
   URL_HASH SHA1=dfd71e8a8bb5ea405086ccd89bf2515e068eb798
   DOWNLOAD_NO_PROGRESS 1
@@ -34,7 +34,7 @@ ExternalProject_Add(
   INSTALL_COMMAND ""
 )
 
-ExternalProject_Get_Property(glm_download SOURCE_DIR)
+ExternalProject_Get_Property(glm_dl SOURCE_DIR)
 
 # append glm include dir to include search path
 include_directories(${SOURCE_DIR})
