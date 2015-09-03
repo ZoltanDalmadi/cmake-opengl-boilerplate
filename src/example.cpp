@@ -8,8 +8,7 @@
 #define HEIGHT 600
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action,
-                  int mode)
-{
+                  int mode) {
   if ((key == GLFW_KEY_ESCAPE || key == GLFW_KEY_Q) && action == GLFW_PRESS)
     glfwSetWindowShouldClose(window, GL_TRUE);
 
@@ -20,15 +19,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action,
   }
 }
 
-int main()
-{
+int main() {
   // Initialize the library
   if (!glfwInit())
     return -1;
 
   // Create a windowed mode window and its OpenGL context
-  GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT,
-                                        "CMake OpenGL Boilerplate", NULL, NULL);
+  auto window = glfwCreateWindow(WIDTH, HEIGHT,
+                                 "CMake OpenGL", nullptr, nullptr);
 
   if (!window) {
     glfwTerminate();
@@ -46,8 +44,10 @@ int main()
   }
 
   // Print OpenGL information
-  std::cout << "OpenGL " << glGetString(GL_VERSION)
-            << ", GLSL " << glGetString(GL_SHADING_LANGUAGE_VERSION)
+  std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl
+            << "Renderer: " << glGetString(GL_RENDERER) << std::endl
+            << "OpenGL: " << glGetString(GL_VERSION) << std::endl
+            << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION)
             << std::endl;
 
   // set window background to a nice blueish color
@@ -57,7 +57,7 @@ int main()
 
   glm::vec3 v(1.0f, 2.0f, 3.0f);
 
-  std::cout << v.x << ", " << v.y << ", " << v.z << std::endl;
+  std::cout << "(" << v.x << ", " << v.y << ", " << v.z << ")" << std::endl;
 
   // Loop until the user closes the window
   while (!glfwWindowShouldClose(window)) {
