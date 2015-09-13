@@ -22,55 +22,34 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 # OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # =============================================================================
+#
+# Try to find GLM include path.
+# Once done this will define
+#
+# GLM_FOUND
+# GLM_INCLUDE_DIR
 
-cmake_minimum_required(VERSION 3.0)
-project(testProj)
+find_path(GLM_INCLUDE_DIR
+  NAMES
+    glm/glm.hpp
+  PATHS
+    "${GLM_LOCATION}/include"
+    "$ENV{GLM_LOCATION}/include"
+    "$ENV{PROGRAMFILES}/glm"
+    "${OPENGL_INCLUDE_DIR}"
+    /usr/openwin/share/include
+    /usr/openwin/include
+    /usr/X11R6/include
+    /usr/include/X11
+    /opt/graphics/OpenGL/include
+    /usr/local/include
+    /usr/include
+  DOC
+    "The directory where glm/glm.hpp resides"
+)
 
-# Needed for downloading and building external libraries
-include(ExternalProject)
+include(FindPackageHandleStandardArgs)
 
-# Enable folders in Visual Studio
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-# Obviously we need OpenGL
-find_package(OpenGL REQUIRED)
-
-# Set compiler flags when using gcc
-if (NOT MSVC)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s")
-endif()
-
-# set path of find modules
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
-
-# gl3w
-find_package(GL3W)
-
-if (NOT GL3W_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/gl3w.cmake)
-endif()
-
-# glfw
-find_package(GLFW)
-
-if (NOT GLFW_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/glfw.cmake)
-endif()
-
-# glm
-find_package(GLFW)
-
-if (NOT GLM_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/glm.cmake)
-endif()
-
-# SOIL2
-find_package(SOIL2)
-
-if (NOT GLM_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/SOIL2.cmake)
-endif()
-
-# add src subdirectory
-add_subdirectory(src)
+find_package_handle_standard_args(GLM DEFAULT_MSG
+    GLM_INCLUDE_DIR
+)

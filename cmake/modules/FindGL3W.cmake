@@ -22,55 +22,60 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 # OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # =============================================================================
+#
+# Try to find GL3W include path and library.
+# Once done this will define
+#
+# GL3W_FOUND
+# GL3W_INCLUDE_DIR
+# GL3W_LIBRARIES
 
-cmake_minimum_required(VERSION 3.0)
-project(testProj)
+find_path(GL3W_INCLUDE_DIR
+  NAMES
+    GL/gl3w.h
+    GL/glcorearb.h
+  PATHS
+    "${GL3W_LOCATION}/include"
+    "$ENV{GL3W_LOCATION}/include"
+    "$ENV{PROGRAMFILES}/gl3w/include"
+    "${OPENGL_INCLUDE_DIR}"
+    /usr/openwin/share/include
+    /usr/openwin/include
+    /usr/X11R6/include
+    /usr/include/X11
+    /usr/local/include
+    /usr/include
+  DOC
+    "The directory where GL/gl3w.h resides"
+)
 
-# Needed for downloading and building external libraries
-include(ExternalProject)
+find_library(GL3W_LIBRARIES
+    gl3w
+  PATHS
+    "${GL3W_LOCATION}/lib"
+    "${GL3W_LOCATION}/lib/x64"
+    "${GL3W_LOCATION}/lib/x11"
+    "$ENV{GL3W_LOCATION}/lib"
+    "$ENV{GL3W_LOCATION}/lib/x64"
+    "$ENV{GL3W_LOCATION}/lib/x11"
+    "${PROJECT_SOURCE_DIR}/extern/gl3w/bin"
+    "${PROJECT_SOURCE_DIR}/extern/gl3w/lib"
+    "$ENV{PROGRAMFILES}/GL3W/lib"
+    "${OPENGL_LIBRARY_DIR}"
+    /usr/lib
+    /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}
+    /usr/lib64
+    /usr/local/lib
+    /usr/local/lib/${CMAKE_LIBRARY_ARCHITECTURE}
+    /usr/local/lib64
+    /usr/X11R6/lib
+    /usr/openwin/lib
+  DOC
+    "The GL3W library"
+)
 
-# Enable folders in Visual Studio
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+include(FindPackageHandleStandardArgs)
 
-# Obviously we need OpenGL
-find_package(OpenGL REQUIRED)
-
-# Set compiler flags when using gcc
-if (NOT MSVC)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s")
-endif()
-
-# set path of find modules
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
-
-# gl3w
-find_package(GL3W)
-
-if (NOT GL3W_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/gl3w.cmake)
-endif()
-
-# glfw
-find_package(GLFW)
-
-if (NOT GLFW_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/glfw.cmake)
-endif()
-
-# glm
-find_package(GLFW)
-
-if (NOT GLM_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/glm.cmake)
-endif()
-
-# SOIL2
-find_package(SOIL2)
-
-if (NOT GLM_FOUND)
-  include(${CMAKE_SOURCE_DIR}/cmake/SOIL2.cmake)
-endif()
-
-# add src subdirectory
-add_subdirectory(src)
+find_package_handle_standard_args(GL3W DEFAULT_MSG
+  GL3W_LIBRARIES GL3W_INCLUDE_DIR
+)
