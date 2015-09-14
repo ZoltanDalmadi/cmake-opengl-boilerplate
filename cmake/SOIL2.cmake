@@ -79,3 +79,4 @@ endif()
 
 # append SOIL2 include dir to include search path
 include_directories(${SOURCE_DIR}/src/SOIL2)
+get_target_property(SOIL2_LIBRARIES SOIL2 IMPORTED_LOCATION)

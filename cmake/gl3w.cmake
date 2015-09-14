@@ -62,3 +62,4 @@ endif()
 
 # append gl3w include dir to include search path
 include_directories(${SOURCE_DIR}/include)
+get_target_property(GL3W_LIBRARIES gl3w IMPORTED_LOCATION)

@@ -61,3 +61,5 @@ endif()
 
 # append glfw include dir to include search path
 include_directories(${SOURCE_DIR}/include)
+
+get_target_property(GLFW_LIBRARIES glfw IMPORTED_LOCATION)

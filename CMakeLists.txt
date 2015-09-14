@@ -47,28 +47,36 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
 # gl3w
 find_package(GL3W)
 
-if (NOT GL3W_FOUND)
+if (GL3W_FOUND)
+  include_directories(${GL3W_INCLUDE_DIR})
+else()
   include(${CMAKE_SOURCE_DIR}/cmake/gl3w.cmake)
 endif()
 
 # glfw
 find_package(GLFW)
 
-if (NOT GLFW_FOUND)
+if (GLFW_FOUND)
+  include_directories(${GLFW_INCLUDE_DIR})
+else()
   include(${CMAKE_SOURCE_DIR}/cmake/glfw.cmake)
 endif()
 
 # glm
-find_package(GLFW)
+find_package(GLM)
 
-if (NOT GLM_FOUND)
+if (GLM_FOUND)
+  include_directories(${GLM_INCLUDE_DIR})
+else()
   include(${CMAKE_SOURCE_DIR}/cmake/glm.cmake)
 endif()
 
 # SOIL2
 find_package(SOIL2)
 
-if (NOT GLM_FOUND)
+if (SOIL2_FOUND)
+  include_directories(${SOIL2_INCLUDE_DIR})
+else()
   include(${CMAKE_SOURCE_DIR}/cmake/SOIL2.cmake)
 endif()
 
