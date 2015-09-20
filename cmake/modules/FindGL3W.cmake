@@ -76,6 +76,7 @@ find_library(GL3W_LIBRARIES
 
 include(FindPackageHandleStandardArgs)
 
-find_package_handle_standard_args(GL3W DEFAULT_MSG
+find_package_handle_standard_args(GL3W
+  "Could NOT find GL3W, it will be downloaded on first build."
   GL3W_LIBRARIES GL3W_INCLUDE_DIR
 )

@@ -78,6 +78,7 @@ find_library(SOIL2_LIBRARIES
 
 include(FindPackageHandleStandardArgs)
 
-find_package_handle_standard_args(SOIL2 DEFAULT_MSG
-    SOIL2_LIBRARIES SOIL2_INCLUDE_DIR
+find_package_handle_standard_args(SOIL2
+  "Could NOT find SOIL2, it will be downloaded on first build."
+  SOIL2_LIBRARIES SOIL2_INCLUDE_DIR
 )

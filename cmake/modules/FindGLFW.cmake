@@ -30,7 +30,7 @@
 # GLFW_LIBRARIES
 #
 
-find_path( GLFW_INCLUDE_DIR 
+find_path( GLFW_INCLUDE_DIR
     NAMES
         GL/glfw.h
         GLFW/glfw3.h
@@ -48,13 +48,13 @@ find_path( GLFW_INCLUDE_DIR
         /usr/local/include
         /usr/include/GL
         /usr/include
-    DOC 
+    DOC
         "The directory where GL/glfw.h resides"
 )
 
 if (WIN32)
     if(CYGWIN)
-        find_library( GLFW_glfw_LIBRARY 
+        find_library( GLFW_glfw_LIBRARY
             NAMES
                 glfw32
             PATHS
@@ -66,14 +66,14 @@ if (WIN32)
                 /usr/lib/w32api
                 /usr/local/lib
                 /usr/X11R6/lib
-            DOC 
+            DOC
                 "The GLFW library"
         )
     else()
         find_library( GLFW_glfw_LIBRARY
-            NAMES 
-                glfw32 
-                glfw32s 
+            NAMES
+                glfw32
+                glfw32s
                 glfw
                 glfw3
             PATHS
@@ -87,14 +87,14 @@ if (WIN32)
                 "${PROJECT_SOURCE_DIR}/extern/glfw/lib"
                 "$ENV{PROGRAMFILES}/GLFW/lib"
                 "${OPENGL_LIBRARY_DIR}"
-            DOC 
+            DOC
                 "The GLFW library"
         )
     endif()
 else ()
     if (APPLE)
         find_library( GLFW_glfw_LIBRARY glfw
-            NAMES 
+            NAMES
                 glfw
                 glfw3
             PATHS
@@ -109,11 +109,11 @@ else ()
         set(GLFW_iokit_LIBRARY "-framework IOKit" CACHE STRING "IOKit framework for OSX")
     else ()
         # (*)NIX
-        
+
         find_package(Threads REQUIRED)
 
         find_package(X11 REQUIRED)
-        
+
         if(NOT X11_Xrandr_FOUND)
             message(FATAL_ERROR "Xrandr library not found - required for GLFW")
         endif()
@@ -129,7 +129,7 @@ else ()
         list(APPEND GLFW_x11_LIBRARY "${X11_Xrandr_LIB}" "${X11_Xxf86vm_LIB}" "${X11_Xcursor_LIB}" "${CMAKE_THREAD_LIBS_INIT}" -lrt -lXi)
 
         find_library( GLFW_glfw_LIBRARY
-            NAMES 
+            NAMES
                 glfw
                 glfw3
             PATHS
@@ -145,7 +145,7 @@ else ()
                 /usr/local/lib/${CMAKE_LIBRARY_ARCHITECTURE}
                 /usr/openwin/lib
                 /usr/X11R6/lib
-            DOC 
+            DOC
                 "The GLFW library"
         )
     endif (APPLE)
@@ -169,15 +169,15 @@ if(GLFW_INCLUDE_DIR)
 
     # Tease the GLFW_VERSION numbers from the lib headers
     function(parseVersion FILENAME VARNAME)
-            
+
         set(PATTERN "^#define ${VARNAME}.*$")
-        
+
         file(STRINGS "${GLFW_INCLUDE_DIR}/${FILENAME}" TMP REGEX ${PATTERN})
-        
+
         string(REGEX MATCHALL "[0-9]+" TMP ${TMP})
-        
+
         set(${VARNAME} ${TMP} PARENT_SCOPE)
-        
+
     endfunction()
 
 
@@ -192,7 +192,7 @@ if(GLFW_INCLUDE_DIR)
         parseVersion(GLFW/glfw3.h GLFW_VERSION_MAJOR)
         parseVersion(GLFW/glfw3.h GLFW_VERSION_MINOR)
         parseVersion(GLFW/glfw3.h GLFW_VERSION_REVISION)
- 
+
     endif()
 
     if(${GLFW_VERSION_MAJOR} OR ${GLFW_VERSION_MINOR} OR ${GLFW_VERSION_REVISION})
@@ -200,17 +200,19 @@ if(GLFW_INCLUDE_DIR)
         set(GLFW_VERSION_STRING "${GLFW_VERSION}")
         mark_as_advanced(GLFW_VERSION)
     endif()
-    
+
 endif(GLFW_INCLUDE_DIR)
 
 include(FindPackageHandleStandardArgs)
 
-find_package_handle_standard_args(GLFW 
+find_package_handle_standard_args(GLFW
     REQUIRED_VARS
         GLFW_INCLUDE_DIR
         GLFW_LIBRARIES
     VERSION_VAR
         GLFW_VERSION
+    FAIL_MESSAGE
+     "Could NOT find GLFW, it will be downloaded on first build."
 )
 
 mark_as_advanced(
@@ -219,5 +221,3 @@ mark_as_advanced(
   GLFW_glfw_LIBRARY
   GLFW_cocoa_LIBRARY
 )
-
-
