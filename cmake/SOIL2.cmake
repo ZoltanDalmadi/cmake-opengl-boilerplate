@@ -52,7 +52,6 @@ endif()
 ExternalProject_Add(
   SOIL2_dl
   URL "https://bitbucket.org/SpartanJ/soil2/get/default.zip"
-  URL_HASH SHA1=6be2b8d2995c6b95cd43cf4cd0ddd52a150d1eca
   DOWNLOAD_NO_PROGRESS 1
   PREFIX ${CMAKE_BINARY_DIR}/SOIL2
   PATCH_COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/SOIL2_build.cmake <SOURCE_DIR>/src/SOIL2/CMakeLists.txt
