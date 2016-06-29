@@ -35,7 +35,7 @@ endif()
 ExternalProject_Add(
   gl3w_dl
   URL "https://github.com/skaslev/gl3w/archive/master.zip"
-  URL_HASH SHA1=28078d8f6a9e3575aaa1efe40c278ea6d6977538
+  URL_HASH SHA1=4d7485a2e47d6f0a34b2f30dd6a849ea55da41b2
   DOWNLOAD_NO_PROGRESS 1
   PREFIX ${CMAKE_BINARY_DIR}/gl3w
   PATCH_COMMAND ${PYTHON_EXECUTABLE} <SOURCE_DIR>/gl3w_gen.py

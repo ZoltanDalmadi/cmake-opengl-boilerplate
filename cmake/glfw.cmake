@@ -31,8 +31,8 @@ endif()
 
 ExternalProject_Add(
   glfw_dl
-  URL "https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip"
-  URL_HASH SHA1=7faa2399a5c4744f096bfc0904676ae61f965281
+  URL "https://github.com/glfw/glfw/releases/download/3.2/glfw-3.2.zip"
+  URL_HASH SHA1=5ccc588d5277ea911dc6dc33e3a696f645eabd8e
   DOWNLOAD_NO_PROGRESS 1
   PREFIX ${CMAKE_BINARY_DIR}/glfw
   # we just need the library file, no tests and examples please
