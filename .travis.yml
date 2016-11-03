@@ -10,8 +10,9 @@ addons:
     - gcc-6
     - g++-6
     - python
-    - cmake
     - libxxf86vm-dev
+    - cmake
+    - cmake-data
 
 language: cpp
 
