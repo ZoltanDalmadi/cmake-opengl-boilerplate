@@ -25,10 +25,10 @@
 
 ExternalProject_Add(
   glm_dl
-  URL "https://github.com/g-truc/glm/releases/download/0.9.7.5/glm-0.9.7.5.7z"
-  URL_HASH SHA1=eed42dba50405172ef0fcd2615b85a3f79231add
-  DOWNLOAD_NO_PROGRESS 1
   PREFIX ${CMAKE_BINARY_DIR}/glm
+  GIT_REPOSITORY https://github.com/g-truc/glm
+  TIMEOUT 10
+  UPDATE_COMMAND ${GIT_EXECUTABLE} pull
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""

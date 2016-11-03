@@ -31,10 +31,11 @@ endif()
 
 ExternalProject_Add(
   glfw_dl
-  URL "https://github.com/glfw/glfw/releases/download/3.2/glfw-3.2.zip"
-  URL_HASH SHA1=5ccc588d5277ea911dc6dc33e3a696f645eabd8e
-  DOWNLOAD_NO_PROGRESS 1
   PREFIX ${CMAKE_BINARY_DIR}/glfw
+  GIT_REPOSITORY https://github.com/glfw/glfw
+  GIT_TAG latest
+  TIMEOUT 10
+  UPDATE_COMMAND ${GIT_EXECUTABLE} pull
   # we just need the library file, no tests and examples please
   CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" "-DGLFW_BUILD_DOCS=OFF"
   "-DGLFW_BUILD_EXAMPLES=OFF" "-DGLFW_BUILD_TESTS:BOOL=OFF"
