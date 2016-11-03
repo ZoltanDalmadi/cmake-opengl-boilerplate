@@ -161,7 +161,7 @@ if(GLFW_INCLUDE_DIR)
                             "${GLFW_cocoa_LIBRARY}"
                             "${GLFW_iokit_LIBRARY}"
                             "${GLFW_corevideo_LIBRARY}" )
-        set( GLFW_FOUND "YES" )
+        set (GLFW_FOUND "YES")
         set (GLFW_LIBRARY "${GLFW_LIBRARIES}")
         set (GLFW_INCLUDE_PATH "${GLFW_INCLUDE_DIR}")
     endif(GLFW_glfw_LIBRARY)
@@ -213,11 +213,4 @@ find_package_handle_standard_args(GLFW
         GLFW_VERSION
     FAIL_MESSAGE
      "Could NOT find GLFW, it will be downloaded on first build."
-)
-
-mark_as_advanced(
-  GLFW_INCLUDE_DIR
-  GLFW_LIBRARIES
-  GLFW_glfw_LIBRARY
-  GLFW_cocoa_LIBRARY
 )
