@@ -31,54 +31,53 @@
 # SOIL2_LIBRARIES
 
 find_path(SOIL2_INCLUDE_DIR
-  NAMES
-    SOIL2/etc1_utils.h
-    SOIL2/image_DXT.h
-    SOIL2/image_helper.h
-    SOIL2/SOIL2.h
-  PATHS
-    "${SOIL2_LOCATION}/include"
-    "$ENV{SOIL2_LOCATION}/include"
-    "$ENV{PROGRAMFILES}/SOIL2/include"
-    "${OPENGL_INCLUDE_DIR}"
-    /usr/openwin/share/include
-    /usr/openwin/include
-    /usr/X11R6/include
-    /usr/include/X11
-    /usr/local/include
-    /usr/include
-  DOC
-  "The directory where SOIL2/SOIL2.h resides"
+	NAMES
+		SOIL2/etc1_utils.h
+		SOIL2/image_DXT.h
+		SOIL2/image_helper.h
+		SOIL2/SOIL2.h
+	PATHS
+		"${SOIL2_LOCATION}/include"
+		"$ENV{SOIL2_LOCATION}/include"
+		"${PROJECT_SOURCE_DIR}/extern/SOIL2/include"
+		"${PROJECT_SOURCE_DIR}/deps/SOIL2/include"
+		"${PROJECT_SOURCE_DIR}/libs/SOIL2/include"
+		"${OPENGL_INCLUDE_DIR}"
+		/usr/include
+		/usr/local/include
+		/usr/share/include
+	DOC
+		"The directory where SOIL2/SOIL2.h resides"
 )
 
 find_library(SOIL2_LIBRARIES
-    SOIL2
-  PATHS
-    "${SOIL2_LOCATION}/lib"
-    "${SOIL2_LOCATION}/lib/x64"
-    "${SOIL2_LOCATION}/lib/x11"
-    "$ENV{SOIL2_LOCATION}/lib"
-    "$ENV{SOIL2_LOCATION}/lib/x64"
-    "$ENV{SOIL2_LOCATION}/lib/x11"
-    "${PROJECT_SOURCE_DIR}/extern/SOIL2/bin"
-    "${PROJECT_SOURCE_DIR}/extern/SOIL2/lib"
-    "$ENV{PROGRAMFILES}/SOIL2/lib"
-    "${OPENGL_LIBRARY_DIR}"
-    /usr/lib
-    /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}
-    /usr/lib64
-    /usr/local/lib
-    /usr/local/lib/${CMAKE_LIBRARY_ARCHITECTURE}
-    /usr/local/lib64
-    /usr/X11R6/lib
-    /usr/openwin/lib
-  DOC
-  "The SOIL2 library"
+	SOIL2
+	NAMES
+		SOIL2
+	PATHS
+		"${SOIL2_LOCATION}/lib"
+		"${SOIL2_LOCATION}/lib/x64"
+		"${SOIL2_LOCATION}/lib/x11"
+		"$ENV{SOIL2_LOCATION}/lib"
+		"$ENV{SOIL2_LOCATION}/lib/x64"
+		"$ENV{SOIL2_LOCATION}/lib/x11"
+		"${PROJECT_SOURCE_DIR}/extern/SOIL2/lib"
+		"${PROJECT_SOURCE_DIR}/deps/SOIL2/lib"
+		"${PROJECT_SOURCE_DIR}/libs/SOIL2/lib"
+		"${OPENGL_LIBRARY_DIR}"
+		/usr/lib
+		/usr/lib64
+		/usr/local/lib
+		/usr/local/lib64
+		/usr/share/lib
+		/usr/share/lib64
+	DOC
+		"The SOIL2 library"
 )
 
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(SOIL2
-  "Could NOT find SOIL2, it will be downloaded on first build."
-  SOIL2_LIBRARIES SOIL2_INCLUDE_DIR
+	"Could NOT find SOIL2, it will be downloaded on first build."
+	SOIL2_LIBRARIES SOIL2_INCLUDE_DIR
 )

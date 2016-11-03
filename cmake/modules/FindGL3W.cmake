@@ -31,52 +31,49 @@
 # GL3W_LIBRARIES
 
 find_path(GL3W_INCLUDE_DIR
-  NAMES
-    GL/gl3w.h
-    GL/glcorearb.h
-  PATHS
-    "${GL3W_LOCATION}/include"
-    "$ENV{GL3W_LOCATION}/include"
-    "$ENV{PROGRAMFILES}/gl3w/include"
-    "${OPENGL_INCLUDE_DIR}"
-    /usr/openwin/share/include
-    /usr/openwin/include
-    /usr/X11R6/include
-    /usr/include/X11
-    /usr/local/include
-    /usr/include
-  DOC
-    "The directory where GL/gl3w.h resides"
+	NAMES
+		GL/gl3w.h
+		GL/glcorearb.h
+	PATHS
+		"${GL3W_LOCATION}/include"
+		"$ENV{GL3W_LOCATION}/include"
+		"${PROJECT_SOURCE_DIR}/extern/gl3w/include"
+		"${PROJECT_SOURCE_DIR}/deps/gl3w/include"
+		"${PROJECT_SOURCE_DIR}/libs/gl3w/include"
+		"${OPENGL_INCLUDE_DIR}"
+		/usr/include
+		/usr/local/include
+		/usr/share/include
+	DOC
+		"The directory where GL/gl3w.h resides"
 )
 
 find_library(GL3W_LIBRARIES
-    gl3w
-  PATHS
-    "${GL3W_LOCATION}/lib"
-    "${GL3W_LOCATION}/lib/x64"
-    "${GL3W_LOCATION}/lib/x11"
-    "$ENV{GL3W_LOCATION}/lib"
-    "$ENV{GL3W_LOCATION}/lib/x64"
-    "$ENV{GL3W_LOCATION}/lib/x11"
-    "${PROJECT_SOURCE_DIR}/extern/gl3w/bin"
-    "${PROJECT_SOURCE_DIR}/extern/gl3w/lib"
-    "$ENV{PROGRAMFILES}/GL3W/lib"
-    "${OPENGL_LIBRARY_DIR}"
-    /usr/lib
-    /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}
-    /usr/lib64
-    /usr/local/lib
-    /usr/local/lib/${CMAKE_LIBRARY_ARCHITECTURE}
-    /usr/local/lib64
-    /usr/X11R6/lib
-    /usr/openwin/lib
-  DOC
-    "The GL3W library"
+	gl3w
+	PATHS
+		"${GL3W_LOCATION}/lib"
+		"${GL3W_LOCATION}/lib/x64"
+		"${GL3W_LOCATION}/lib/x11"
+		"$ENV{GL3W_LOCATION}/lib"
+		"$ENV{GL3W_LOCATION}/lib/x64"
+		"$ENV{GL3W_LOCATION}/lib/x11"
+		"${PROJECT_SOURCE_DIR}/extern/gl3w/lib"
+		"${PROJECT_SOURCE_DIR}/deps/gl3w/lib"
+		"${PROJECT_SOURCE_DIR}/libs/gl3w/lib"
+		"${OPENGL_LIBRARY_DIR}"
+		/usr/lib
+		/usr/lib64
+		/usr/local/lib
+		/usr/local/lib64
+		/usr/share/lib
+		/usr/share/lib64
+	DOC
+		"The GL3W library"
 )
 
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(GL3W
-  "Could NOT find GL3W, it will be downloaded on first build."
-  GL3W_LIBRARIES GL3W_INCLUDE_DIR
+	"Could NOT find GL3W, it will be downloaded on first build."
+	GL3W_LIBRARIES GL3W_INCLUDE_DIR
 )
