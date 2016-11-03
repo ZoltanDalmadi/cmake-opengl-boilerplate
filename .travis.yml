@@ -5,8 +5,8 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-5
-    - g++-5
+    - gcc-6
+    - g++-6
 
 language: cpp
 
@@ -17,8 +17,9 @@ before_install:
   - wget http://www.cmake.org/files/v3.6/cmake-3.6.3-Linux-x86_64.sh
   - chmod +x cmake-3.6.3-Linux-x86_64.sh
   - sudo ./cmake-3.6.3-Linux-x86_64.sh --skip-license --prefix=/usr
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 90
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+  - sudo apt-get install -y libxxf86vm-dev
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
 before_script:
   - mkdir build
