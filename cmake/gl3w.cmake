@@ -34,10 +34,10 @@ endif()
 
 ExternalProject_Add(
   gl3w_dl
-  URL "https://github.com/skaslev/gl3w/archive/master.zip"
-  URL_HASH SHA1=4d7485a2e47d6f0a34b2f30dd6a849ea55da41b2
-  DOWNLOAD_NO_PROGRESS 1
   PREFIX ${CMAKE_BINARY_DIR}/gl3w
+  GIT_REPOSITORY https://github.com/skaslev/gl3w
+  TIMEOUT 10
+  UPDATE_COMMAND ${GIT_EXECUTABLE} pull
   PATCH_COMMAND ${PYTHON_EXECUTABLE} <SOURCE_DIR>/gl3w_gen.py
   CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
   # disable install
