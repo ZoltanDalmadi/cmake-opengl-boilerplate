@@ -4,9 +4,14 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
+    - deadsnakes
+    - george-edison55-precise-backports
     packages:
     - gcc-6
     - g++-6
+    - python
+    - cmake
+    - libxxf86vm-dev
 
 language: cpp
 
@@ -14,10 +19,6 @@ compiler:
   - gcc
 
 before_install:
-  - wget http://www.cmake.org/files/v3.6/cmake-3.6.3-Linux-x86_64.sh
-  - chmod +x cmake-3.6.3-Linux-x86_64.sh
-  - sudo ./cmake-3.6.3-Linux-x86_64.sh --skip-license --prefix=/usr
-  - sudo apt-get install -y libxxf86vm-dev
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 90
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
