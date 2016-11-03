@@ -24,9 +24,9 @@
 # =============================================================================
 
 if (MSVC)
-    set(SOIL2_LIB_FILE "SOIL2.lib")
+  set(SOIL2_LIB_FILE "SOIL2.lib")
 else()
-    set(SOIL2_LIB_FILE "libSOIL2.a")
+  set(SOIL2_LIB_FILE "libSOIL2.a")
 endif()
 
 # this file will be the CMakeLists.txt file of SOIL2
@@ -34,18 +34,17 @@ file(WRITE ${CMAKE_BINARY_DIR}/SOIL2_build.cmake
 "cmake_minimum_required(VERSION 3.0)
 project(SOIL2)
 
+file(GLOB SOIL2_SOURCES *.c)
+
 add_library(SOIL2 STATIC
-  etc1_utils.c
-  image_DXT.c
-  image_helper.c
-  SOIL2.c
+  \${SOIL2_SOURCES}
 )
 
 if (MSVC)
-    target_compile_options(SOIL2 PUBLIC \"/TP\")
-    target_compile_definitions(SOIL2 PUBLIC \"_CRT_SECURE_NO_WARNINGS\")
+  target_compile_options(SOIL2 PUBLIC \"/TP\")
+  target_compile_definitions(SOIL2 PUBLIC \"_CRT_SECURE_NO_WARNINGS\")
 else()
-    target_compile_options(SOIL2 PUBLIC \"-O2\" \"-DNDEBUG\")
+  target_compile_options(SOIL2 PUBLIC \"-O2\" \"-DNDEBUG\")
 endif()
 ")
 
