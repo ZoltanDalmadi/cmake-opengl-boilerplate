@@ -1,7 +1,7 @@
 #include <iostream>
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
-#include <SOIL2.h>
+#include <SOIL2/SOIL2.h>
 #include <glm/glm.hpp>
 
 #define WIDTH  800
