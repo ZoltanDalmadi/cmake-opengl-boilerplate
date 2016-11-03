@@ -28,6 +28,7 @@ project(testProj)
 
 # Needed for downloading and building external libraries
 include(ExternalProject)
+find_package(Git REQUIRED)
 
 # Enable folders in Visual Studio
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
