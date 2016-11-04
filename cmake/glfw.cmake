@@ -29,6 +29,10 @@ else()
   set(GLFW_LIB_FILE "libglfw3.a")
 endif()
 
+if (CMAKE_TOOLCHAIN_FILE)
+  set(CACHE_ARGS "-DCMAKE_TOOLCHAIN_FILE:string=${CMAKE_TOOLCHAIN_FILE}")
+endif()
+
 ExternalProject_Add(
   glfw_dl
   PREFIX ${CMAKE_BINARY_DIR}/glfw
@@ -38,8 +42,8 @@ ExternalProject_Add(
   UPDATE_COMMAND ${GIT_EXECUTABLE} pull
   # we just need the library file, no tests and examples please
   CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" "-DGLFW_BUILD_DOCS=OFF"
-  "-DGLFW_BUILD_EXAMPLES=OFF" "-DGLFW_BUILD_TESTS:BOOL=OFF"
-  "-DGLFW_INSTALL=OFF" "-DGLFW_USE_DWM_SWAP_INTERVAL=ON"
+  "-DGLFW_BUILD_EXAMPLES=OFF" "-DGLFW_BUILD_TESTS:BOOL=OFF" "-DGLFW_INSTALL=OFF"
+  CMAKE_CACHE_ARGS ${CACHE_ARGS}
   # disable install
   INSTALL_COMMAND ""
 )

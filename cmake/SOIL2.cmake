@@ -48,6 +48,10 @@ else()
 endif()
 ")
 
+if (CMAKE_TOOLCHAIN_FILE)
+  set(CACHE_ARGS "-DCMAKE_TOOLCHAIN_FILE:string=${CMAKE_TOOLCHAIN_FILE}")
+endif()
+
 ExternalProject_Add(
   SOIL2_dl
   URL "https://bitbucket.org/SpartanJ/soil2/get/default.zip"
@@ -55,7 +59,7 @@ ExternalProject_Add(
   PREFIX ${CMAKE_BINARY_DIR}/SOIL2
   PATCH_COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/SOIL2_build.cmake <SOURCE_DIR>/src/SOIL2/CMakeLists.txt
   CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
-  CONFIGURE_COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" <SOURCE_DIR>/src/SOIL2
+  CONFIGURE_COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" ${CACHE_ARGS} <SOURCE_DIR>/src/SOIL2
   INSTALL_COMMAND ""
 )
 

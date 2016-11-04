@@ -32,6 +32,10 @@ else()
   set(GL3W_LIB_FILE "libgl3w.a")
 endif()
 
+if (CMAKE_TOOLCHAIN_FILE)
+  set(CACHE_ARGS "-DCMAKE_TOOLCHAIN_FILE:string=${CMAKE_TOOLCHAIN_FILE}")
+endif()
+
 ExternalProject_Add(
   gl3w_dl
   PREFIX ${CMAKE_BINARY_DIR}/gl3w
@@ -40,6 +44,7 @@ ExternalProject_Add(
   UPDATE_COMMAND ${GIT_EXECUTABLE} pull
   PATCH_COMMAND ${PYTHON_EXECUTABLE} <SOURCE_DIR>/gl3w_gen.py
   CMAKE_ARGS "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+  CMAKE_CACHE_ARGS ${CACHE_ARGS}
   # disable install
   INSTALL_COMMAND ""
 )
