@@ -2,7 +2,7 @@
 #                           CMake OpenGL Boilerplate
 #
 #            Starting project for cross platform OpenGL development
-#              Copyright © 2015 Zoltan Dalmadi (dmz985@gmail.com)
+#              Copyright Â© 2016 Zoltan Dalmadi (dmz985@gmail.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the "Software"),
@@ -31,74 +31,53 @@
 # GLFW_LIBRARIES
 
 find_path(GLFW_INCLUDE_DIR
-	NAMES
-		GLFW/glfw3.h
-	PATHS
-		"${GLFW_LOCATION}/include"
-		"$ENV{GLFW_LOCATION}/include"
-		"${PROJECT_SOURCE_DIR}/extern/glfw/include"
-		"${PROJECT_SOURCE_DIR}/deps/glfw/include"
-		"${PROJECT_SOURCE_DIR}/libs/glfw/include"
-		"${OPENGL_INCLUDE_DIR}"
-		/usr/include
-		/usr/local/include
-		/usr/share/include
-	DOC
-		"The directory where GL/glfw.h resides"
+  NAMES
+    GLFW/glfw3.h
+  PATHS
+    "${GLFW_LOCATION}/include"
+    "$ENV{GLFW_LOCATION}/include"
+    "${PROJECT_SOURCE_DIR}/extern/glfw/include"
+    "${PROJECT_SOURCE_DIR}/deps/glfw/include"
+    "${PROJECT_SOURCE_DIR}/libs/glfw/include"
+    "${OPENGL_INCLUDE_DIR}"
+    /usr/include
+    /usr/local/include
+    /usr/share/include
+  DOC
+    "The directory where GL/glfw.h resides"
 )
 
 find_library(GLFW_LIBRARIES
-	glfw
-	NAMES
-		glfw32
-		glfw32s
-		glfw
-		glfw3
-	PATHS
-		"${GLFW_LOCATION}/lib"
-		"${GLFW_LOCATION}/lib/x64"
-		"${GL3W_LOCATION}/lib/x11"
-		"$ENV{GLFW_LOCATION}/lib"
-		"$ENV{GLFW_LOCATION}/lib/x64"
-		"$ENV{GL3W_LOCATION}/lib/x11"
-		"${PROJECT_SOURCE_DIR}/extern/glfw/lib"
-		"${PROJECT_SOURCE_DIR}/deps/glfw/lib"
-		"${PROJECT_SOURCE_DIR}/libs/glfw/lib"
-		"${OPENGL_LIBRARY_DIR}"
-		/usr/lib
-		/usr/lib64
-		/usr/local/lib
-		/usr/local/lib64
-		/usr/share/lib
-		/usr/share/lib64
-	DOC
-		"The GLFW library"
+  glfw
+  NAMES
+    glfw32
+    glfw32s
+    glfw
+    glfw3
+  PATHS
+    "${GLFW_LOCATION}/lib"
+    "${GLFW_LOCATION}/lib/x64"
+    "${GL3W_LOCATION}/lib/x11"
+    "$ENV{GLFW_LOCATION}/lib"
+    "$ENV{GLFW_LOCATION}/lib/x64"
+    "$ENV{GL3W_LOCATION}/lib/x11"
+    "${PROJECT_SOURCE_DIR}/extern/glfw/lib"
+    "${PROJECT_SOURCE_DIR}/deps/glfw/lib"
+    "${PROJECT_SOURCE_DIR}/libs/glfw/lib"
+    "${OPENGL_LIBRARY_DIR}"
+    /usr/lib
+    /usr/lib64
+    /usr/local/lib
+    /usr/local/lib64
+    /usr/share/lib
+    /usr/share/lib64
+  DOC
+    "The GLFW library"
 )
-
-if(UNIX)
-	find_package(Threads REQUIRED)
-	find_package(X11 REQUIRED)
-
-	if(NOT X11_Xrandr_FOUND)
-		message(FATAL_ERROR "Xrandr library not found - required for GLFW")
-	endif()
-
-	if(NOT X11_xf86vmode_FOUND)
-		message(FATAL_ERROR "xf86vmode library not found - required for GLFW")
-	endif()
-
-	if(NOT X11_Xcursor_FOUND)
-		message(FATAL_ERROR "Xcursor library not found - required for GLFW")
-	endif()
-
-	list(APPEND GLFW_LIBRARIES "${X11_Xrandr_LIB}" "${X11_Xxf86vm_LIB}"
-		"${X11_Xcursor_LIB}" "${CMAKE_THREAD_LIBS_INIT}" -lrt -lXi)
-
-endif(UNIX)
 
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(GLFW
-	"Could NOT find GLFW, it will be downloaded on first build."
-	GLFW_LIBRARIES GLFW_INCLUDE_DIR
+  "Could NOT find GLFW, it will be downloaded on first build."
+  GLFW_LIBRARIES GLFW_INCLUDE_DIR
 )

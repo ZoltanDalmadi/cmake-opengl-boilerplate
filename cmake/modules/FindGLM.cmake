@@ -2,7 +2,7 @@
 #                           CMake OpenGL Boilerplate
 #
 #            Starting project for cross platform OpenGL development
-#              Copyright © 2015 Zoltan Dalmadi (dmz985@gmail.com)
+#              Copyright © 2016 Zoltan Dalmadi (dmz985@gmail.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the "Software"),
@@ -30,25 +30,25 @@
 # GLM_INCLUDE_DIR
 
 find_path(GLM_INCLUDE_DIR
-	NAMES
-		glm/glm.hpp
-	PATHS
-		"${GLM_LOCATION}/include"
-		"$ENV{GLM_LOCATION}/include"
-		"${PROJECT_SOURCE_DIR}/extern/glm/include"
-		"${PROJECT_SOURCE_DIR}/deps/glm/include"
-		"${PROJECT_SOURCE_DIR}/libs/glm/include"
-		"${OPENGL_INCLUDE_DIR}"
-		/usr/include
-		/usr/local/include
-		/usr/share/include
-	DOC
-		"The directory where glm/glm.hpp resides"
+  NAMES
+    glm/glm.hpp
+  PATHS
+    "${GLM_LOCATION}/include"
+    "$ENV{GLM_LOCATION}/include"
+    "${PROJECT_SOURCE_DIR}/extern/glm/include"
+    "${PROJECT_SOURCE_DIR}/deps/glm/include"
+    "${PROJECT_SOURCE_DIR}/libs/glm/include"
+    "${OPENGL_INCLUDE_DIR}"
+    /usr/include
+    /usr/local/include
+    /usr/share/include
+  DOC
+    "The directory where glm/glm.hpp resides"
 )
 
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(GLM
-	"Could NOT find GLM, it will be downloaded on first build."
-	GLM_INCLUDE_DIR
+  "Could NOT find GLM, it will be downloaded on first build."
+  GLM_INCLUDE_DIR
 )
