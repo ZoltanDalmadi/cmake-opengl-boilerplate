@@ -11,4 +11,4 @@ Uses the following libraries:
 CMake will download and build them automatically (if necessary).
 
 #### Requirements:
-  - Python 2.6 or newer (for gl3w)
+  - Python 2.7.9 or newer (for gl3w)
