@@ -24,7 +24,7 @@
 # =============================================================================
 
 # gl3w needs Python to generate source files
-include(FindPythonInterp)
+find_package(PythonInterp REQUIRED)
 
 if (MSVC)
   set(GL3W_LIB_FILE "gl3w.lib")
